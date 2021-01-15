@@ -1,0 +1,14 @@
+<h3>  <%= @project.title %></h3>
+<h3>  <%= @project.description %></h3>
+<h3>  <%= @project.due_date %></h3>
+
+<small>
+<p>Created on : <%= time_ago_in_words(@project.created_at)  %> </p>
+</small>
+<small>
+<p>Updated on : <%= time_ago_in_words(@project.updated_at)  %> </p>
+</small>
+<small>
+    <%= link_to("Edit", edit_project_path(@project.id))%> | 
+    <%= link_to("Delete",project_path(@project),method: :delete,data:{confirm: "Are you sure you want to delete this project"})%>
+</small>
