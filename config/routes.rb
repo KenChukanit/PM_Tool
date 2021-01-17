@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get("/home", to: "home#index")
   get("/about", to: "home#about")
 
-  resources :projects
+  resources :projects do
+    resources :tasks, only: [:create, :destroy, :update]
+  end
 end

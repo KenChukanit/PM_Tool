@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
     end
 
     def show
-
+        @tasks = @project.tasks.order(created_at: :desc)
+        @task = Task.new
     end
 
     def destroy
