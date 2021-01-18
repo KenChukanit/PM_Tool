@@ -1,4 +1,5 @@
 class DiscussionsController < ApplicationController
+    before_action :authenticate_user!
     def create
         @project = Project.find params[:project_id]
         @discussion = Discussion.new discussion_params
@@ -8,7 +9,7 @@ class DiscussionsController < ApplicationController
         if @discussion.save
             redirect_to project_path(@project), notice: 'New Dicussion created'
         else   
-            render 'projects/show'
+            render :new
         end
 
     end

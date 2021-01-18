@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-
+    before_action :authenticate_user!
     def create
         @project = Project.find params[:project_id]
         @task = Task.new task_params

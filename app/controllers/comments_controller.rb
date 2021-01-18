@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to project_path(@project), notice: 'New Comment created'
         else   
-            render 'projects/show'
+            render :new
         end
 
     end
