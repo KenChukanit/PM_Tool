@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :find_project, only: [:show, :edit, :update, :destroy ]
     def index
         @projects = Project.all.order(created_at: :desc)
@@ -25,6 +26,7 @@ class ProjectsController < ApplicationController
 
     def create  
         @project = Project.new project_params
+        @project.user = current_user
         
         if @project.save
             flash[:notice] = "New project has been created"

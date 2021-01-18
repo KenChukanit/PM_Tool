@@ -1,7 +1,9 @@
 <h3>  <%= @project.title %></h3>
 <h3>  <%= @project.description %></h3>
 <h3>  <%= @project.due_date %></h3>
-
+<div>
+    Created by: <%= @project.user&.full_name || "DELETED" %>
+</div>
 <small>
 <p>Created on : <%= time_ago_in_words(@project.created_at)  %> </p>
 </small>
@@ -98,8 +100,15 @@
 <%= link_to("Edit", edit_project_discussion_path(@project,discussion))%> | 
 <%= link_to "Delete",project_discussion_path(@project,discussion), method: :delete,data: {confirm: "Are you sure to delete this discussion?"} %>
 <%= link_to "Add comment", new_project_discussion_comment_path(@project, discussion, @comment)%>
-
+<small>
+    Discussed by:
+    <%= discussion.user&.full_name || "DELETED" %>
+</small>
 <% discussion.comments.each do |comment| %>
 <p>  <%= comment.body %></p>
+<small>
+    Commented by:
+    <%= comment.user&.full_name || "DELETED" %>
+</small>
 <% end %>
 <% end %>

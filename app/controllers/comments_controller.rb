@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+    before_action :authenticate_user! 
    
     def create
         @project = Project.find params[:project_id]
@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
         @comment = Comment.new comment_params
         @task = Task.new
         @comment.discussion = @discussion
+        @comment.user = current_user
         
         if @comment.save
             redirect_to project_path(@project), notice: 'New Comment created'
