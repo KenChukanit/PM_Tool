@@ -87,3 +87,19 @@
 
 </div>
 <% end %>
+
+
+
+<%= link_to "New Dicussion", new_project_discussion_path(@project, @discussion)%>
+
+<% @project.discussions.each do |discussion| %>
+<h3>  <%= discussion.title %></h3>
+<h3>  <%= discussion.description %></h3>
+<%= link_to("Edit", edit_project_discussion_path(@project,discussion))%> | 
+<%= link_to "Delete",project_discussion_path(@project,discussion), method: :delete,data: {confirm: "Are you sure to delete this discussion?"} %>
+<%= link_to "Add comment", new_project_discussion_comment_path(@project, discussion, @comment)%>
+
+<% discussion.comments.each do |comment| %>
+<p>  <%= comment.body %></p>
+<% end %>
+<% end %>

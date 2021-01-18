@@ -1,0 +1,20 @@
+<div class="form-group"> 
+
+<%= form_with model: [@project, @discussion, @comment], local: true do |f|%>
+<ul>
+<% if @comment.errors.full_messages.each do |msg|%>
+
+    <li>
+        <%= msg %>
+       
+    </li>
+<% end %>
+<% end %>
+    <div> 
+    <%=  f.label :body %>
+    <%=  f.text_field :body, class: 'form-control' %>
+    </div>
+    <%=  f.submit  class: 'btn btn-primary'%>
+
+</div>
+<% end %>

@@ -7,6 +7,11 @@ class ProjectsController < ApplicationController
     def show
         @tasks = @project.tasks.order(created_at: :desc)
         @task = Task.new
+        @discussions = @project.discussions.order(created_at: :desc)
+        @discussion = Discussion.find params[:id]
+        @comments = @discussion.comments.order(created_at: :desc)
+        @comment = Comment.new
+     
     end
 
     def destroy

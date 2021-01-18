@@ -34,16 +34,6 @@ class TasksController < ApplicationController
         end
     end
 
-    def undone
-        @task.update(status: nil)
-        if @task.save
-            return redirect_to project_path(@project), notice: 'Task undone'
-        else   
-            return render 'projects/show'
-        end
-    end
-
-
     private
     def task_params
         params.require(:task).permit(:title, :body, :due_date)
