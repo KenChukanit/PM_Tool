@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+   
 
     has_many :projects, dependent: :nullify
     has_many :discussions, dependent: :nullify
