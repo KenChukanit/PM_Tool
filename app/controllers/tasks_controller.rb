@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
+
     before_action :authenticate_user!
+    
     def create
         @project = Project.find params[:project_id]
         @task = Task.new task_params
@@ -23,7 +25,7 @@ class TasksController < ApplicationController
     def update
         @project = Project.find params[:project_id]
         @task = Task.find params[:id]
-     
+    
         if @task.uncompleted?
             @task.completed!
             redirect_to project_path(@project), notice: 'Task completed'

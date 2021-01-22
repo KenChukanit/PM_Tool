@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
     before_action :find_project, only: [:show, :edit, :update, :destroy ]
-    before_action :authorize_user!, only:[:edit, :update, :destroy]
+    before_action :authorize_user_project!, only:[:edit, :update, :destroy]
 
     def index
         @projects = Project.all.order(created_at: :desc)
@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
         @discussion = Discussion.new
         @comments = @discussion.comments.order(created_at: :desc)
         @comment = Comment.new
-     
     end
 
     def destroy
@@ -61,7 +60,7 @@ class ProjectsController < ApplicationController
         params.require(:project).permit(:title, :description, :due_date)
     end
 
-    def authorize_user!
-        redirect_to projects_path, alert: "!Only Authorized User can make a change"
+    def authorize_user_project!
+        redirect_to projects_path, alert: "!Only Authorized User can make a change" unless can?(:crud, @project)
     end
 end

@@ -112,11 +112,15 @@
     Discussed by:
     <%= discussion.user&.full_name || "DELETED" %>
 </small>
+<div>
 <% discussion.comments.each do |comment| %>
 <p>  <%= comment.body %></p>
 <small>
     Commented by:
     <%= comment.user&.full_name || "DELETED" %>
 </small>
+<%= link_to("Edit", edit_project_discussion_comment_path(@project,discussion,comment))%> | 
+<%= link_to "Delete",project_discussion_comment_path(@project,discussion,comment), method: :delete,data: {confirm: "Are you sure to delete this comment?"} %>
 <% end %>
+<div>
 <% end %>

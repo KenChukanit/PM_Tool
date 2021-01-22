@@ -27,23 +27,25 @@ class CommentsController < ApplicationController
     def destroy
         @project = Project.find params[:project_id]
         @discussion = Discussion.find params[:discussion_id]
-        @comment = Comment.new comment_params
+        @comment = Comment.find params[:comment_id]
 
         @comment.destroy
         redirect_to project_path(@project), notice: "Comment deleted"
     end
 
     def edit
-       
+        @project = Project.find params[:project_id]
+        @discussion = Discussion.find params[:discussion_id]
+        @comment = Comment.find params[:id]
     end
 
     def update
         @project = Project.find params[:project_id]
         @discussion = Discussion.find params[:discussion_id]
-        @comment = Comment.new comment_params
+        @comment = Comment.find params[:id]
         
         if @comment.update comment_params
-        redirect_to project_path(@project.id), notice: "You have updated the discussion."
+        redirect_to project_path(@project.id), notice: "You have updated the comment."
         else  
             render :edit
         end
@@ -54,7 +56,7 @@ class CommentsController < ApplicationController
     def find_dicussion_comment
         @project = Project.find params[:project_id]
         @discussion = Discussion.find params[:discussion_id]
-        @comment = Comment.new comment_params
+        @comment = Comment.find params[:comment_id]
     end
 
     def comment_params

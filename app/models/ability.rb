@@ -7,9 +7,10 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
       user ||= User.new # guest user (not logged in)
-      if user.admin?
+      
+      if user.is_admin?
         can :manage, :all
-      else
+      end
     #     can :read, :all
     #   end
     #
@@ -31,17 +32,17 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-        alias_action(:create, :read :update, :delete, to: :crud)
+        alias_action(:create, :read, :update, :delete, to: :crud)
 
-        can(:crud), Project do |project|
+        can (:crud), Project do |project|
           user == project.user
         end
 
-        can(:crud), Discussion do |discussion|
+        can (:crud), Discussion do |discussion|
           user == discussion.user
         end
 
-        can(:comment), Comment do |comment|
+        can (:comment), Comment do |comment|
           user == comment.user
         end
 

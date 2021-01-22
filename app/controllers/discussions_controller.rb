@@ -1,5 +1,6 @@
 class DiscussionsController < ApplicationController
     before_action :authenticate_user!
+    before_action :authorize_user_discussion!, only: [:edit, :update, :destroy]
     def create
         @project = Project.find params[:project_id]
         @discussion = Discussion.new discussion_params
@@ -46,5 +47,10 @@ class DiscussionsController < ApplicationController
     private
     def discussion_params
         params.require(:discussion).permit(:title, :description)
+    end
+
+    def authorize_user_discussion!
+        @discussion = Discussion.find params[:id]
+        redirect_to projects_path, alert: "!Only Authorized User can make a change"unless can?(:crud, @discussion)
     end
 end
