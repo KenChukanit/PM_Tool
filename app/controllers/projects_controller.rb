@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
     before_action :find_project, only: [:show, :edit, :update, :destroy ]
+    before_action :authorize_user!, only:[:edit, :update, :destroy]
+
     def index
         @projects = Project.all.order(created_at: :desc)
     end
@@ -59,4 +61,7 @@ class ProjectsController < ApplicationController
         params.require(:project).permit(:title, :description, :due_date)
     end
 
+    def authorize_user!
+        redirect_to projects_path, alert: "!Only Authorized User can make a change"
+    end
 end
