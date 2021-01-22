@@ -1,9 +1,9 @@
-<h1> Edit Password</h1>
+<h1> New Password</h1>
 <%= @user.password_digest%>
 <% @user.first_name%>
 <% @new_password%>
 
-<%= form_with model: user_passwords_path ,method: patch,local:true do |f|%>
+<%= form_with model: [@user, @password],local:true do |f|%>
 <% if @user.errors.any? %>
 <p>
     <%= @user.errors.full_messages.join(', ')%>

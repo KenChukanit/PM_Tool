@@ -26,6 +26,29 @@ class UsersController < ApplicationController
         end
     end
 
+    def change_password
+    end
+
+    def do_reset_password
+        id = params[:id]
+        
+        if params[:user][:new_password] != params[:user][:new_password_confirmation]
+            flash[:alert] = "Passwords must match." 
+            redirect_to user_change_password_path(@user)
+            return
+        end
+        if  @user.authenticate(params[:user][:new_password])  == @user.authenticate(params[:password])
+            @user.update(password: params[:user][:new_password],
+                        password_confirmation: params[:user][:new_password_confirmation] )
+            @user.save
+            respond_to do |format|
+                format.html { redirect_to root_path, notice: 'Your password has been changed.' }
+            end
+        else
+            flash[:alert] = "Invalid password, must be at least 6 charactors." 
+            redirect_to user_change_password_path(@user)
+        end
+    end
 
     private
     def user_params

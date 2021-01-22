@@ -22,4 +22,4 @@
 <%= f.submit "Update Profile"%>
 <% end %>
 
-<%= link_to "Change Password"  ,edit_user_passwords_path(@user, @password),data: {confirm: "Are you sure to change your password?"}%>
+<%= link_to "Change Password"  ,user_change_password_path(@user),data: {confirm: "Are you sure to change your password?"}%>

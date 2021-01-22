@@ -1,26 +1,49 @@
 class PasswordsController < ApplicationController
 
-    def edit
-        @user = current_user
-        @password = @user.password_digest
-       
-    end
+    # def new
+    #     @user = current_user
+    #     @password = @user.password_digest
+    # end
 
-    def update
-        @old_password = params[:old_password]
-        @new_password = params[:new_password]
-        @new_password_confirmation = params[:new_password_confirmation]
-        @user = current_user
-        if @old_password == user.password_digest
-            @user.update(password_digest: @new_password, password_confirmation: @new_password_confirmation)
-            redirect_to root_path , notice: "You have changed your password"
+    # def create
+    #     @user = current_user
+    #     @password = @user.password_digest
+    #     @old_password = params[:user][:old_password]
+    #     @new_password = params[:user][:new_password]
+    #     @new_password_confirmation = params[:user][:new_password_confirmation]
         
-                render :edit
+    #     if params[:user][:old_password] == @user.password_digest
+    #         @user.update(password_digest: @new_password, password_confirmation: @new_password_confirmation)
+    #         redirect_to root_path , notice: "You have changed your password"
+        
+    #             render :edit
                 
-        else  
-            render :edit, alert: "Wrong password!  Please check your password"
-        end
-    end
+    #     else  
+    #         render :edit, alert: "Wrong password!  Please check your password"
+    #     end
+
+    # end
+    # def edit
+        
+    #     @user = current_user
+    #     @password = @user.password_digest
+       
+    # end
+
+    # def update
+       
+        # @current_user ||= User.find_by_id session[:user_id]
+
+        # if @old_password == @current_user.password
+        #     @user.update(password_digest: @new_password, password_confirmation: @new_password_confirmation)
+        #     redirect_to root_path , notice: "You have changed your password"
+        
+        #         render :edit
+                
+        # else  
+        #     render :edit, alert: "Wrong password!  Please check your password"
+        # end
+    # end
 
     private
     def user_params

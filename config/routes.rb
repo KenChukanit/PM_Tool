@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy] do
-    resource :passwords, only: [:edit, :update]
+    get("change_password", to: "users#change_password")
+    post('do_reset_password', to: "users#do_reset_password")
+    resource :passwords
   end
 
   resource :session, only: [:new, :create, :destroy]
