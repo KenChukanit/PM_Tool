@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :authorize_user_discussion!, only: [:edit, :update, :destroy]
     def create
         @project = Project.find params[:project_id]

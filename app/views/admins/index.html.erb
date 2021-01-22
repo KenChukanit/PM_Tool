@@ -1,0 +1,43 @@
+<h1>  Admin Panel</h1>
+
+<br/><br/>
+
+<h1>Summary Page<h1>
+
+<p><strong>Number of users:</strong> <%= @users.count %></p>
+<p><strong>Number of projects:</strong> <%= @projects.count %></p>
+<p><strong>Number of tasks:</strong> <%= @tasks.count %></p>
+<p><strong>Number of discussions:</strong> <%= @discussions.count %></p>
+<p><strong>Number of tasks:</strong> <%= @comments.count %></p>
+
+<hr/>
+
+<h2>Projects</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+    </tr>
+    <% @projects.each do |project| %>
+        <tr>
+            <td><%= project.id %></td>
+            <td><%= link_to project.title, project %></td>
+        </tr>
+    <% end %>
+</table>
+
+<h2>Users</h2>
+<table>
+    <tr class='card-title mr-3'>
+        <th>ID</th>
+        <th>Full name</th>
+        <th>email</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr class='card-body mr-3'>
+            <td><%= user.id %></td>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+        </tr>
+    <% end %>
+</table>

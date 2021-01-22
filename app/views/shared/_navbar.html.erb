@@ -1,5 +1,5 @@
 <nav>
-<span>
+<span class= 'nav-item'>
 <%= link_to "Home", home_path%>
 |
 <%= link_to "About", about_path%>
@@ -9,6 +9,9 @@
 <%= link_to "New Project", new_project_path%>
 |
         <% if user_signed_in? %>
+        <% if current_user.is_admin? %>
+        <%= link_to 'Admin Dashboard', admins_path, class: 'nav-item' %>
+        <% end %>
         Hello <%= current_user.full_name %> | 
         <%= link_to "Edit your profile", edit_user_path(current_user), 
         data: {confirm: 'Are you sure you want to edit your profile?'}
