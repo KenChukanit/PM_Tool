@@ -9,7 +9,8 @@ class ProjectsController < ApplicationController
         @tasks = @project.tasks.order(created_at: :desc)
         @task = Task.new
         @discussions = @project.discussions.order(created_at: :desc)
-        @discussion = Discussion.find params[:id]
+        # @discussion = Discussion.find params[:id]
+        @discussion = Discussion.new
         @comments = @discussion.comments.order(created_at: :desc)
         @comment = Comment.new
      

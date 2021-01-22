@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     def change_password
     end
 
-    def do_reset_password
+    def do_change_password
         id = params[:id]
         
         if params[:user][:new_password] != params[:user][:new_password_confirmation]
