@@ -3,7 +3,7 @@ class Project < ApplicationRecord
     has_many :discussions, dependent: :destroy
     belongs_to :user, optional: true
     validates :title, presence: {message: 'must be provided'},uniqueness: true
-    validate :due_date_greater_than_created_at
+    # validate :due_date_greater_than_created_at
 
 
 
