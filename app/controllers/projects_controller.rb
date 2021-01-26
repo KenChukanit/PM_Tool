@@ -4,8 +4,14 @@ class ProjectsController < ApplicationController
     before_action :authorize_user_project!, only:[:edit, :update, :destroy]
 
     def index
-        @projects = Project.all.order(created_at: :desc)
-      
+        # @projects = Project.all.order(created_at: :desc)
+        @projects = Project.all.all_with_discussion_counts.order(updated_at: :desc)
+    #     @projects_t = Project.all.all_with_task_counts.order(updated_at: :desc)
+    #     @projects_c = Project.all.all_with_comment_counts.order(updated_at: :desc)
+    end
+
+    def favourited
+        @projects =current_user.favoured_projects.all_with_discussion_counts.order(created_at: :desc)
     end
 
     def show
@@ -16,6 +22,8 @@ class ProjectsController < ApplicationController
         @discussion = Discussion.new
         @comments = @discussion.comments.order(created_at: :desc)
         @comment = Comment.new
+        @favourite = @project.favourites.find_by_user_id current_user if user_signed_in?
+        
     end
 
     def destroy

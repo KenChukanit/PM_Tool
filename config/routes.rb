@@ -5,11 +5,16 @@ Rails.application.routes.draw do
   get("/about", to: "home#about")
 
   resources :projects do
+    resources :favourites, shallow: :true, only: [:create, :destroy]
+    get :favourited, on: :collection
     resources :tasks, only: [:create, :destroy, :update]
     resources :discussions, only: [:new, :create, :destroy, :update, :edit] do
       resources :comments, only: [:new, :create, :destroy, :update, :edit]
     end
+
   end
+
+  resources :favourites, only: [:index]
 
   resources :users, only: [:new, :create, :edit, :update, :destroy] do
     get("change_password", to: "users#change_password")

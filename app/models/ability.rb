@@ -46,5 +46,13 @@ class Ability
           user == comment.user
         end
 
+        can :favourite, Project do |project|
+        project.user != user
+        end
+
+        can :destroy, Favourite do |favourite|
+          favourite.user == user
+        end
+        
   end
 end
