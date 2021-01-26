@@ -13,7 +13,7 @@
   <body>
   <div class = "container">
     <%= render "shared/navbar"%>
-    <%= flash[:notice] || flash[:alert] %>
+    <%= render "shared/alert"%>
     <%= yield %>
     </div>
   </body>

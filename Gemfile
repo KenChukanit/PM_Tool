@@ -24,6 +24,7 @@ gem 'cancancan', '~> 3.2', '>= 3.2.1'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'bootstrap', '~> 4.5', '>= 4.5.3'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 

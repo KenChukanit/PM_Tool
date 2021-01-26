@@ -1,0 +1,14 @@
+<%#= flash[:notice] || flash[:alert] %>
+
+<% if flash[:notice].present? %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= flash[:notice]%>
+
+</div>
+<% elsif flash[:alert].present? %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= flash[:alert]  %> 
+  
+
+</div>
+<% end %>

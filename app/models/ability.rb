@@ -42,7 +42,7 @@ class Ability
           user == discussion.user
         end
 
-        can (:comment), Comment do |comment|
+        can (:crud), Comment do |comment|
           user == comment.user
         end
 
