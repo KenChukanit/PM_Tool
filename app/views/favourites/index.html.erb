@@ -1,0 +1,13 @@
+<h1>All Favourites</h1>
+<% if @favourites.present?%>
+ <% @favourites.each do |favourite|  %>
+  <ul>
+    <li><%= favourite.title%> </li>
+ 
+  </ul>
+
+<% end %>
+  <% else%>
+
+  <h3> You still have no favoured project</h3>
+<% end %>

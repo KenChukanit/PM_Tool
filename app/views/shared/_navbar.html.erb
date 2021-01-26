@@ -6,6 +6,8 @@
 |
 <%= link_to "Project", projects_path%>
 |
+<%= link_to "Favoured Projects", favourites_path, class: 'nav-item'  %>
+|
 <%= link_to "New Project", new_project_path%>
 |
         <% if user_signed_in? %>

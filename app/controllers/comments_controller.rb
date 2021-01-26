@@ -72,6 +72,6 @@ class CommentsController < ApplicationController
         @project = Project.find params[:project_id]
         @discussion = Discussion.find params[:discussion_id]
         @comment = Comment.find params[:id]
-        redirect_to projects_path, alert: "!Only Authorized User can make a change"unless can?(:crud,@discussion, @comment)
+        redirect_to projects_path, alert: "!Only Authorized User can make a change"unless can?(:crud, @comment)
     end
 end
